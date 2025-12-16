@@ -1,0 +1,1 @@
+message(a b c) # output "abc"
