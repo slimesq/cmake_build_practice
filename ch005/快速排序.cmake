@@ -51,7 +51,11 @@ function(quick_sort input res)
     list(APPEND _res ${left} ${pivot} ${right})
 
     # 设置到上层作用域的结果变量中
-    set(${res} "${_res}" PARENT_SCOPE)
+    set(${res} "${_res}" PARENT_SCOPE)  
+    #[[写成set(res "${_res}" PARENT_SCOPE) 也能达到效果,但是会污染父作用域的变量,不要使用！！！
+        set(${res} "${_res}" PARENT_SCOPE): 通过变量名的 “引用” 设置父作用域中指定名称的变量;
+        set(res "${_res}" PARENT_SCOPE): 直接设置父作用域中名为 res 的变量
+    ]]
 endfunction()
 
 # 接受命令行输入的参数
