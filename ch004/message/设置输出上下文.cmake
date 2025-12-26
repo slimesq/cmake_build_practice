@@ -1,0 +1,22 @@
+function(f0)
+    list(APPEND CMAKE_MESSAGE_CONTEXT "f0")
+    list(APPEND CMAKE_MESSAGE_INDENT "  ")
+    message(STATUS "f0被调用")
+endfunction()
+
+function(f1)
+    list(APPEND CMAKE_MESSAGE_CONTEXT "f1")
+    list(APPEND CMAKE_MESSAGE_INDENT "  ")
+    message(STATUS "f1被调用")
+    f0()    
+endfunction()
+
+set(CMAKE_MESSAGE_CONTEXT_SHOW TRUE)
+list(APPEND CMAKE_MESSAGE_CONTEXT "主程序")
+f0()
+f1()
+
+# 输出:
+# -- [主程序.f0]   f0被调用
+# -- [主程序.f1]   f1被调用
+# -- [主程序.f1.f0]     f0被调用
