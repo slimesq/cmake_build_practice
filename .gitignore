@@ -16,3 +16,5 @@ conan_deps
 *.lib
 *.obj
 *.o
+CMakeFiles
+CMakeCache.txt

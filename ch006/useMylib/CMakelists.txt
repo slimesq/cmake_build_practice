@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.20)
+
+# 定义项目名称
+project(use_mylib VERSION 1.0.0)
+
+# 在搜索目录(${CMAKE_CURRENT_LIST_DIR})的子目录(mylib-1.0.0-win64/lib)中查找mylib库
+# 将目录路径存入mylib_LIBRARY变量中
+find_library(
+    mylib_LIBRARY
+    mylib  # 要查找的库核心名称（会自动匹配 mylib.lib/mylib.dll）
+    PATHS "${CMAKE_CURRENT_LIST_DIR}"  # 基础搜索根目录（对应库所在根路径）
+    PATH_SUFFIXES "lib/lib" "mylib-1.0.0-win64/lib"     # 存在多个时,匹配其中一个即可
+)
+
+# 输出 "D:/CodeRepository/cmake_build_practice/ch006/useMylib/mylib-1.0.0-win64/lib/mylib.lib"
+message("${mylib_LIBRARY}")
+
+# 添加可执行文件目标main,其源代码包含main.c
+add_executable(main main.c)
+
+# 链接mylib库到main程序
+target_link_libraries(main ${mylib_LIBRARY})
