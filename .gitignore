@@ -18,3 +18,4 @@ conan_deps
 *.o
 CMakeFiles
 CMakeCache.txt
+onnxruntime_providers_shared.pdb
